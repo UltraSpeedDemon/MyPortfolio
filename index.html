@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethan Curtis - Home</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- BACKGROUND LAYERS -->
+  <!-- Each .bg-layer is position: absolute. We'll do negative translate for parallax. -->
+  <div class="bg-layer sunrise-bg"></div>
+  <div class="bg-layer sunset-bg"></div>
+
+  <main class="content-wrapper">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="brand">
+        <a href="index.html" class="btn">Ethan Curtis</a>
+      </div>
+      <div class="nav-right">
+        <!-- THEME TOGGLE SWITCH -->
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider round"></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="aboutme.html">About Me</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <div class="hero-content">
+        <!-- No "I want to work for you" line -->
+        <h1 class="hero-heading">
+          I am a <span class="highlight">Computer Science</span> Student in Ontario, Canada
+        </h1>
+        <div class="hero-buttons">
+          <a href="contact.html" class="btn">Get in Touch</a>
+          <a href="projects.html" class="btn">View my Work</a>
+        </div>
+        <div class="hero-text-links">
+          <a
+            href="https://github.com/UltraSpeedDemon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ethan-curtis-07004622b/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- EDUCATION -->
+    <section class="education">
+      <h2>My Education</h2>
+      <div class="edu-container">
+        <!-- Lakehead & Georgian -->
+        <div class="edu-item column-layout">
+          <div class="edu-images row-center">
+            <img src="images/georgian_logo.png" alt="Georgian College Logo" />
+            <img src="images/lakehead_logo.png" alt="Lakehead University Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>Lakehead University – Georgian Partnership</h3>
+            <p><strong>Bachelor of Computer Science (HBSc) – Dean’s List</strong></p>
+            <p>September 2021 to Present (4th year)</p>
+            <p>
+              Courses include: Computer Programming, Relational Databases,
+              Discrete Mathematics, Calculus, Server-Side Scripting, Advanced Java,
+              Arduino Programming, Mainframe Environment, Networking Essentials,
+              Data Structures, Software Engineering, Operating Systems,
+              Mobile Development, Artificial Intelligence, Cloud Computing,
+              and Game Programming.
+            </p>
+          </div>
+        </div>
+
+        <!-- St. Peter’s -->
+        <div class="edu-item column-layout">
+          <div class="edu-images single-image">
+            <img src="images/stpeters.jpg" alt="St. Peter’s Catholic Secondary School Logo" />
+          </div>
+          <div class="edu-details">
+            <h3>St. Peter’s Catholic Secondary School, Barrie ON</h3>
+            <p><strong>Graduated — Honour Roll</strong></p>
+            <p>September 2017 to June 2021</p>
+            <p>
+              Honour Roll Student, All Academic Student, graduated with an Ontario
+              Scholar Award and a Scholarship.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME SECTION -->
+    <section class="resume-section">
+      <div class="resume-card">
+        <h2>View My Current Resume</h2>
+        <!-- Extra spacing between text & the button -->
+        <p style="margin-bottom:1rem;">
+          Want more details about my experience and skills? Check out my updated resume.
+        </p>
+        <a href="resume/Resume.pdf" class="btn" target="_blank">Open Resume (PDF)</a>
+      </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section class="courses-section">
+      <!-- CHANGED TITLE TO "Computer Courses I've Taken" -->
+      <h2>Computer Courses I’ve Taken</h2>
+      <div class="course-cards">
+        <div class="course-card">Web Development</div>
+        <div class="course-card">Computer Programming</div>
+        <div class="course-card">Relational Database</div>
+        <div class="course-card">Discrete Mathematics</div>
+        <div class="course-card">Calculus</div>
+        <div class="course-card">Server-Side Scripting</div>
+        <div class="course-card">Advanced Java</div>
+        <div class="course-card">Arduino Programming</div>
+        <div class="course-card">Mainframe Environment</div>
+        <div class="course-card">Networking Essentials</div>
+        <div class="course-card">Data Structures</div>
+        <div class="course-card">Software Engineering</div>
+        <div class="course-card">Operating Systems</div>
+        <div class="course-card">Mobile Development</div>
+        <div class="course-card">Artificial Intelligence</div>
+        <div class="course-card">Cloud Computing</div>
+        <div class="course-card">Web Health Informatics</div>
+        <div class="course-card">Cryptography & Network Security</div>
+        <div class="course-card">Algorithms</div>
+        <div class="course-card">Computer Networks & Distributes</div>
+        <div class="course-card">Game Programming</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Ethan Curtis</p>
+  </footer>
+
+  <!-- THEME & PARALLAX SCRIPT -->
+  <script>
+    const bodyEl = document.body;
+    const toggleCheckbox = document.getElementById("theme-toggle");
+    
+    // Check saved mode
+    const savedMode = localStorage.getItem("themeMode");
+    if (savedMode === "sunset") {
+      bodyEl.classList.add("sunset-mode");
+      toggleCheckbox.checked = true;
+    } else {
+      bodyEl.classList.remove("sunset-mode");
+      toggleCheckbox.checked = false;
+    }
+
+    // Toggle theme
+    toggleCheckbox.addEventListener("change", () => {
+      if (toggleCheckbox.checked) {
+        bodyEl.classList.add("sunset-mode");
+        localStorage.setItem("themeMode", "sunset");
+      } else {
+        bodyEl.classList.remove("sunset-mode");
+        localStorage.setItem("themeMode", "sunrise");
+      }
+    });
+
+    // PARALLAX: background moves upward
+    const sunriseBg = document.querySelector(".sunrise-bg");
+    const sunsetBg = document.querySelector(".sunset-bg");
+    window.addEventListener("scroll", () => {
+      const offset = window.pageYOffset;
+      const factor = 0.2; // adjust for more or less movement
+      // Negative translate => background moves up while scrolling down
+      sunriseBg.style.transform = `translateY(-${offset * factor}px)`;
+      sunsetBg.style.transform = `translateY(-${offset * factor}px)`;
+    });
+  </script>
+</body>
+</html>
+

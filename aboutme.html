@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethan Curtis - About Me</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <!-- BG LAYERS -->
+  <div class="bg-layer sunrise-bg"></div>
+  <div class="bg-layer sunset-bg"></div>
+
+  <main class="content-wrapper">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="brand">
+        <a href="index.html" class="btn">Ethan Curtis</a>
+      </div>
+      <div class="nav-right">
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider round"></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="aboutme.html" class="active">About Me</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ABOUT HERO -->
+    <section class="hero about-hero">
+      <div class="hero-content">
+        <h1>About Me</h1>
+        <p>
+          Fourth-year Bachelor of Computer Science student dedicated to 
+          contributing strongly within a technical environment.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT CARDS -->
+    <section class="about-cards">
+      <!-- HEADSHOT + SUMMARY CARD -->
+      <div class="about-card">
+        <img
+          src="images/EthanCurtis.jpg"
+          alt="Ethan Curtis Headshot"
+          class="headshot"
+        />
+        <div class="card-content">
+          <h2>Professional Summary</h2>
+          <p>
+            Highly focused and responsible fourth-year Bachelor of Computer Science student
+            dedicated to contributing strongly within a technical environment or related role
+            requiring an enthusiastic team player with a friendly professional demeanor.
+            I take pride in doing work well.
+          </p>
+        </div>
+      </div>
+
+      <!-- SKILLS CARD -->
+      <div class="about-card">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+          <li>
+            <strong>Mathematics:</strong> 
+            Ability to use superb mental math skills to ensure accuracy in 
+            processing in technical occurrences.
+          </li>
+          <li>
+            <strong>Communication:</strong> 
+            Excellent communication and interpersonal skills both orally and in writing.
+          </li>
+          <li>
+            <strong>Teamwork:</strong> 
+            Able to work independently or as a team member. Supportive and motivated 
+            when working with others in assigned tasks and projects.
+          </li>
+          <li>
+            <strong>Computer Skills:</strong> 
+            Knowledge of Java, JavaScript, R, C++, C#, C, .NET, Kotlin, SQL, HTML, CSS, 
+            Assembly, PHP, React, and Python.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Ethan Curtis</p>
+  </footer>
+
+  <!-- THEME & PARALLAX + localStorage Script -->
+  <script>
+    const bodyEl = document.body;
+    const toggleCheckbox = document.getElementById("theme-toggle");
+
+    // On load, check localStorage for saved mode
+    const savedMode = localStorage.getItem("themeMode");
+    if (savedMode === "sunset") {
+      bodyEl.classList.add("sunset-mode");
+      toggleCheckbox.checked = true;
+    } else {
+      bodyEl.classList.remove("sunset-mode");
+      toggleCheckbox.checked = false;
+    }
+
+    // When user toggles, update body class & localStorage
+    toggleCheckbox.addEventListener("change", () => {
+      if (toggleCheckbox.checked) {
+        bodyEl.classList.add("sunset-mode");
+        localStorage.setItem("themeMode", "sunset");
+      } else {
+        bodyEl.classList.remove("sunset-mode");
+        localStorage.setItem("themeMode", "sunrise");
+      }
+    });
+
+    // Gentle parallax
+    const sunriseBg = document.querySelector(".sunrise-bg");
+    const sunsetBg = document.querySelector(".sunset-bg");
+    window.addEventListener("scroll", () => {
+      const offset = window.pageYOffset;
+      sunriseBg.style.backgroundPositionY = -(offset * 0.15) + "px";
+      sunsetBg.style.backgroundPositionY = -(offset * 0.15) + "px";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethan Curtis - Projects</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <!-- BG LAYERS -->
+  <div class="bg-layer sunrise-bg"></div>
+  <div class="bg-layer sunset-bg"></div>
+
+  <main class="content-wrapper">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="brand">
+        <a href="index.html" class="btn">Ethan Curtis</a>
+      </div>
+      <div class="nav-right">
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider round"></span>
+        </label>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="aboutme.html">About Me</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="projects-hero">
+      <h1>All Projects</h1>
+      <p>Here are some highlights of what I've been working on.</p>
+    </section>
+
+    <!-- TEAM PROJECTS -->
+    <section class="projects-section">
+      <h2>Team Projects</h2>
+
+      <!-- Treble: smaller images, side by side on the left, text on the right -->
+      <div class="project-card">
+        <div class="project-image-col side-by-side smaller">
+          <img 
+            src="images/trebleTitle.png" 
+            alt="Treble Title Screen" 
+          />
+          <img 
+            src="images/trebleDemo.png" 
+            alt="Treble Demo" 
+          />
+        </div>
+        <div class="project-text-col">
+          <h3 class="project-title">Treble – Music Social Platform (Dec 2025 - Present)</h3>
+          <h3 class="project-title">*In Development*</h3>
+          <p>
+            A Music Social app, where users can connect with friends, comment, rate, 
+            and build a social profile around music. Users can link their Spotify, 
+            Apple Music, and Last.fm accounts to listen to the music they love 
+            right from the app.
+          </p>
+          <a href="https://github.com/TeamBass/Treble" class="btn" target="_blank">GitHub (Private)</a>
+        </div>
+      </div>
+
+      <!-- WarriorFit: bigger image, side by side on the left, text on the right -->
+      <div class="project-card">
+        <div class="project-image-col side-by-side warriorfit">
+          <img 
+            src="images/warriorFitDemo.png" 
+            alt="WarriorFit Demo" 
+          />
+        </div>
+        <div class="project-text-col">
+          <h3 class="project-title">WarriorFit – Fitness App (Sep 2024 - Nov 2024)</h3>
+          <p>
+            This JavaFX app was created for a school project. It allows users to 
+            select exercises and continue a workout to view results and progress, 
+            along with gaining XP points and levels.
+          </p>
+          <a href="https://github.com/cronix1000/WarriorFit" class="btn" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY PROJECTS -->
+    <section class="projects-section">
+      <h2>Solo Projects</h2>
+
+      <!-- Sports Tracker: small logo inline with the title text, plus the main screenshot on left -->
+      <div class="project-card">
+        <div class="project-image-col side-by-side smaller">
+          <img
+            src="images/sportsTrackerProject.png"
+            alt="Sports Tracker App Demo"
+          />
+        </div>
+        <div class="project-text-col">
+          <h3 class="project-title">
+            <img
+              src="images/sportsTrackerLogo.jpg"
+              alt="Sports Tracker Logo"
+              class="tiny-inline-logo"
+            />
+            Sports Tracker (Dec 2022 - Apr 2022)
+          </h3>
+          <p>
+            A sports tracker mobile app made using Kotlin. This app lets users 
+            choose their favorite or current sport, then input basic statistics 
+            to see in-depth results. It also includes a tournament bracket feature 
+            for friendly competition.
+          </p>
+          <a href="https://github.com/UltraSpeedDemon/SportsTracker" class="btn" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Ethan Curtis</p>
+  </footer>
+
+  <!-- THEME & PARALLAX + localStorage Script -->
+  <script>
+    const bodyEl = document.body;
+    const toggleCheckbox = document.getElementById("theme-toggle");
+
+    // On load, check localStorage for saved mode
+    const savedMode = localStorage.getItem("themeMode");
+    if (savedMode === "sunset") {
+      bodyEl.classList.add("sunset-mode");
+      toggleCheckbox.checked = true;
+    } else {
+      bodyEl.classList.remove("sunset-mode");
+      toggleCheckbox.checked = false;
+    }
+
+    // When user toggles, update body class & localStorage
+    toggleCheckbox.addEventListener("change", () => {
+      if (toggleCheckbox.checked) {
+        bodyEl.classList.add("sunset-mode");
+        localStorage.setItem("themeMode", "sunset");
+      } else {
+        bodyEl.classList.remove("sunset-mode");
+        localStorage.setItem("themeMode", "sunrise");
+      }
+    });
+
+    // Gentle parallax
+    const sunriseBg = document.querySelector(".sunrise-bg");
+    const sunsetBg = document.querySelector(".sunset-bg");
+    window.addEventListener("scroll", () => {
+      const offset = window.pageYOffset;
+      sunriseBg.style.backgroundPositionY = -(offset * 0.15) + "px";
+      sunsetBg.style.backgroundPositionY = -(offset * 0.15) + "px";
+    });
+  </script>
+</body>
+</html>

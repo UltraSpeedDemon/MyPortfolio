@@ -1,0 +1,750 @@
+/* =========================
+   GLOBAL RESET & LAYOUT
+   ========================= */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Sunrise = Blue, Sunset = Red */
+  :root {
+    --color-sunrise: #0284c7;
+    --color-sunset: #e11d48;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer {
+    margin-top: auto; 
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.3);
+  }
+  
+  /* =========================
+     BACKGROUND LAYERS
+     ========================= */
+  .bg-layer {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .sunrise-bg {
+    background-image: url('../images/sunrise.jpg');
+    opacity: 1;
+  }
+  .sunset-bg {
+    background-image: url('../images/sunset.jpg');
+  }
+  body.sunset-mode .sunrise-bg {
+    opacity: 0;
+  }
+  body.sunset-mode .sunset-bg {
+    opacity: 1;
+  }
+  
+  /* =========================
+     NAVBAR
+     ========================= */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(0,0,0,0.3);
+  
+    /* Space below navbar so content isn't too close */
+    margin-bottom: 2rem;
+  }
+  
+  .brand {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  /* Make brand link transparent */
+  .brand .btn {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 400;
+    transition: background-color 0.3s;
+  }
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    background-color: rgba(255,255,255,0.2);
+  }
+  
+  /* =========================
+     TOGGLE SWITCH
+     ========================= */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+  }
+  .switch input {
+    opacity: 0;
+    width: 0; 
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; 
+    width: 20px;
+    left: 3px; 
+    bottom: 3px;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  .switch input:checked + .slider {
+    background-color: var(--color-sunset);
+  }
+  .switch input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  /* =========================
+     HERO SECTIONS
+     ========================= */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .hero-content {
+    max-width: 600px;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  .highlight {
+    color: var(--color-sunrise);
+    font-weight: 600;
+  }
+  body.sunset-mode .highlight {
+    color: var(--color-sunset);
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .hero-text-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .hero-text-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+  }
+  .hero-text-links a:hover {
+    opacity: 0.7;
+  }
+  
+  /* =========================
+     BUTTONS
+     ========================= */
+  .btn {
+    display: inline-block;
+    background-color: var(--color-sunrise);
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    margin-top: 5%;
+  }
+  .btn:hover {
+    background-color: #0369a1;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.2);
+  }
+  body.sunset-mode .btn {
+    background-color: var(--color-sunset);
+  }
+  body.sunset-mode .btn:hover {
+    background-color: #be123c;
+  }
+  
+  /* =========================
+     EDUCATION
+     ========================= */
+  .education {
+    padding: 2rem 1rem;
+  }
+  .education h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+  .edu-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  .edu-item {
+    display: flex;
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    padding: 1rem;
+  }
+  .edu-item.column-layout {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .edu-images img {
+    width: 130px;
+    border-radius: 6px;
+    background-color: #fff;
+  }
+  .edu-images.single-image img {
+    width: 150px; 
+  }
+  .edu-details {
+    max-width: 700px;
+  }
+  
+  /* =========================
+     ABOUT PAGE
+     ========================= */
+  .about-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+  .about-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .headshot {
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+  }
+  .card-content {
+    text-align: center;
+    max-width: 600px;
+  }
+  .skills-list {
+    list-style: disc inside;
+    line-height: 1.6;
+  }
+  
+  /* =========================
+     PROJECTS
+     ========================= */
+  .projects-hero {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  .projects-hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  /* 
+    Container for the 'Team Projects' / 'My Projects' groups
+  */
+  .projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  .projects-section h2 {
+    margin-bottom: 1.5rem; /* space below heading */
+  }
+  
+  /* 
+    If you still use .project-row for certain layouts:
+    images on the left, text on the right
+  */
+  .project-row {
+    display: flex;
+    align-items: flex-start; /* top align */
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Column for images, stacked vertically in .project-row */
+  .project-image-col img {
+    width: 200px; /* smaller images */
+    max-width: 100%;
+    margin-bottom: 0.5rem; /* small gap between images */
+  }
+  
+  .project-text-col {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* 
+    NEW: Each project as a "card" with background, 
+    border-radius, padding, etc.
+  */
+  .project-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem; /* space between cards */
+  }
+  
+  /* For a normal card with left image(s) & right text */
+  .project-image-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Smaller images (e.g. Treble, etc.) */
+  .project-image-col.smaller img {
+    width: 150px; 
+  }
+  
+  /* Bigger image (e.g. WarriorFit) */
+  .project-image-col.warriorfit img {
+    width: 300px; 
+  }
+  
+  /* The text column in .project-card */
+  .project-text-col {
+    flex: 1;
+  }
+  
+  /* 
+    Single-column card (e.g. Sports Tracker) 
+    that stacks logo / text / second image
+  */
+  .project-card.single-col {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Optional sizing for Sports Tracker images */
+  .logo-img {
+    width: 250px; 
+    margin-bottom: 1rem;
+  }
+  .demo-img {
+    width: 20px; 
+    margin-top: 1rem;
+  }
+  
+  /* =========================
+     CONTACT
+     ========================= */
+  .contact-hero {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .contact-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .contact-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .contact-card h2 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  .contact-card p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  .contact-link a {
+    color: var(--color-sunrise);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .contact-link a:hover {
+    text-decoration: underline;
+  }
+  body.sunset-mode .contact-link a {
+    color: var(--color-sunset);
+  }
+  
+  /* =========================
+     MEDIA QUERIES
+     ========================= */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-right {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      width: 100%;
+    }
+  
+    .hero-text-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .edu-item {
+      text-align: center;
+    }
+    .row-center {
+      flex-direction: column;
+    }
+  
+    /* If you're using .project-row, stack images & text on mobile */
+    .project-row {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+    .project-image-col img {
+      margin-bottom: 1rem;
+    }
+    .project-text-col {
+      margin-top: 1rem;
+    }
+  
+    /* If you're using .project-card, also stack on mobile */
+    .project-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .project-text-col {
+      margin-top: 1rem;
+    }
+  }
+  
+  
+  /* =========================
+     RESUME SECTION
+     ========================= */
+  .resume-section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .resume-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .resume-card h2 {
+    margin-bottom: 1rem;
+  }
+  
+  /* =========================
+     COURSES SECTION
+     ========================= */
+  .courses-section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .courses-section h2 {
+    margin-bottom: 1.5rem;
+  }
+  .course-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .course-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1rem;
+    width: calc(33.333% - 1rem);
+    text-align: center;
+    font-weight: 500;
+  }
+  .course-card:hover {
+    background-color: rgba(255,255,255,0.25);
+  }
+  @media (max-width: 768px) {
+    .course-card {
+      width: calc(50% - 1rem);
+    }
+  }
+  @media (max-width: 500px) {
+    .course-card {
+      width: 100%;
+    }
+  }
+  
+  /* =========================
+     ABOUT PAGE
+     ========================= */
+  .about-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+  .about-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .headshot {
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+  }
+  .card-content {
+    text-align: center;
+    max-width: 600px;
+  }
+  .skills-list {
+    list-style: disc inside;
+    line-height: 1.6;
+  }
+  
+  /* =========================
+     PROJECTS PAGE
+     ========================= */
+  .projects-hero {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  .projects-section h2 {
+    margin-bottom: 1.5rem;
+  }
+  .project-card {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem; 
+    max-width: 900px; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .side-by-side {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .project-image-col {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .project-text-col {
+    flex: 1;
+  }
+  .project-title {
+    margin-bottom: 1rem;
+  }
+  .project-image-col.smaller img {
+    width: 150px;
+  }
+  .project-image-col.warriorfit img {
+    width: 300px;
+  }
+  .tiny-inline-logo {
+    width: 40px; 
+    height: 40px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+  
+  /* =========================
+     CONTACT
+     ========================= */
+  .contact-hero {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .contact-hero h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .contact-card {
+    margin-top: 3rem; 
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .contact-card h2 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  .contact-card p {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .contact-link a {
+    color: var(--color-sunrise);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .contact-link a:hover {
+    text-decoration: underline;
+  }
+  body.sunset-mode .contact-link a {
+    color: var(--color-sunset);
+  }
+  
+  /* =========================
+     MEDIA QUERIES
+     ========================= */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-right {
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      width: 100%;
+    }
+  
+    .hero-text-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .side-by-side {
+      flex-direction: column;
+    }
+    .project-text-col {
+      margin-top: 1rem;
+    }
+  }
+  
